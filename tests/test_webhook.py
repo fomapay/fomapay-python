@@ -23,8 +23,9 @@ def test_valid_signature_returns_the_event():
 
 
 def test_known_vector():
-    # Vecteur commun à tous les SDKs FomaPay.
-    header = "t=1700000000,v1=" + hmac.new(b"whsec_test", b'1700000000.{"id":"evt_1"}', hashlib.sha256).hexdigest()
+    # Vecteur commun à tous les SDKs FomaPay, calculé avec OpenSSL :
+    # printf '1700000000.{"id":"evt_1"}' | openssl dgst -sha256 -hmac whsec_test
+    header = "t=1700000000,v1=c89214b5b5da833daed6f0b8c5bb6bd58cea9022bd80ccc78230f3942d632925"
     assert fomapay.webhook.verify('{"id":"evt_1"}', header, "whsec_test", now=1700000000)
 
 
