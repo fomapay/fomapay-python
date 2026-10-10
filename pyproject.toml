@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fomapay"
+version = "0.1.0"
+description = "SDK Python officiel de FomaPay : paiements FomaPay Direct et Mobile Money en RDC."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "FomaPay" }]
+keywords = ["fomapay", "paiement", "mobile money", "rdc", "m-pesa", "orange money", "airtel money"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Framework :: AsyncIO",
+  "Topic :: Office/Business :: Financial",
+  "Typing :: Typed",
+]
+dependencies = ["httpx>=0.25,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.urls]
+Documentation = "https://docs.fomapay.cd"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fomapay"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
